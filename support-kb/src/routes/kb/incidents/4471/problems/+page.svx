@@ -43,9 +43,21 @@ pale.harbour (10). First seen 2026-04-17, last seen 2026-09-22. Intake tagged 18
 
 Filed as a ticket in this repo: https://github.com/Bumshakalaka/s01e03-what-it-shows/issues/2
 
+## Outcome (engineering update, desk)
+
+#4471 was closed on 05 Oct. Per problem:
+
+- `parser` — **fixed**: `fix(dates): parse dd/mm for eu locales`
+- `hint` — **won't fix**: booking-v3 form retired
+
+The tickets filed from this page were closed to match: the `parser` ticket as completed,
+the `hint` ticket as not planned.
+
+
 <Callout>
 The merged ticket's own cause is `parser` (the majority, per `ticketCause`); the 33
 `hint` reports were merged into the wrong place and need the ticket of their own.
 </Callout>
+
 
 <RenderStamp {signature} />

@@ -111,6 +111,14 @@ channel on booking-v3 tenants is affected: alder.physio (12 reports), copper.stu
 pale.harbour (10). First seen 2026-04-17, last seen 2026-09-22. Intake tagged 18 of these
 <code>hint</code> and 15 <code>parser</code>.</p>
 <p>Filed as a ticket in this repo: https://github.com/Bumshakalaka/s01e03-what-it-shows/issues/2</p>
+<h2>Outcome (engineering update, desk)</h2>
+<p>#4471 was closed on 05 Oct. Per problem:</p>
+<ul>
+  <li><code>parser</code> — <strong>fixed</strong>: <code>fix(dates): parse dd/mm for eu locales</code></li>
+  <li><code>hint</code> — <strong>won't fix</strong>: booking-v3 form retired</li>
+</ul>
+<p>The tickets filed from this page were closed to match: the <code>parser</code> ticket as completed,
+the <code>hint</code> ticket as not planned.</p>
 <aside class="note">
 <p>The merged ticket's own cause is <code>parser</code> (the majority, per <code>ticketCause</code>); the 33
 <code>hint</code> reports were merged into the wrong place and need the ticket of their own.</p>
