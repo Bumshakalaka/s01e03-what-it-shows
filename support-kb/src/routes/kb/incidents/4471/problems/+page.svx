@@ -1,0 +1,51 @@
+---
+layout: runbook
+title: '#4471 split: two problems, not one'
+owner: omp-harness
+status: filed
+reviewed: 2026-10-31
+signature: omp-harness
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+#4471 was merged as one issue ("dates parse mm/dd in eu locales", status known) on the
+assumption that all **412 reports** were a single bug. They are not. Running the desk's
+own cause model (`causes.ts`: tenant locale + booking form + channel, never the intake
+tag) over the 412 unique reports merged into #4471 gives two distinct problems:
+
+<CauseTable ticket={4471} />
+
+## Problem 1 — `parser` — 379 of 412 reports
+
+The shared parser reads every date month-first, so tenants whose locale writes day-first
+get day and month flipped. All 11 tenants on file are day-first (de-DE, es-ES, en-GB,
+nl-NL, cs-CZ, it-IT, fr-FR, pl-PL, pt-PT, da-DK, en-IE), so all of them are affected
+outside the booking-v3 form: app (204 reports), email (150), booking-v2 form (25).
+First seen 2026-04-01, last seen 2026-10-04. Intake tagged 356 of these `parser` and 23
+`hint`; the computed cause disagrees with the tag for 23 reports. Desk notes read 5 of
+them as a one-day move (R-41202, R-41209, R-41236, R-41344, R-41620), filed under this
+cause.
+
+Filed as a ticket in this repo: __ISSUE_PARSER__
+
+## Problem 2 — `hint` — 33 of 412 reports
+
+The booking-v3 form prints an `MM/DD/YYYY` hint under the date field. The tenant's staff
+type what the hint tells them, month first — but the form parses the entry the tenant's
+day-first way, flipping day and month. A different bug from `parser`, and only the form
+channel on booking-v3 tenants is affected: alder.physio (12 reports), copper.studio (11),
+pale.harbour (10). First seen 2026-04-17, last seen 2026-09-22. Intake tagged 18 of these
+`hint` and 15 `parser`.
+
+Filed as a ticket in this repo: __ISSUE_HINT__
+
+<Callout>
+The merged ticket's own cause is `parser` (the majority, per `ticketCause`); the 33
+`hint` reports were merged into the wrong place and need the ticket of their own.
+</Callout>
+
+<RenderStamp {signature} />
