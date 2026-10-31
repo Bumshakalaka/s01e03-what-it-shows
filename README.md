@@ -14,11 +14,10 @@ Deliverables for MEGA.dev challenge S01E03, all in this one public repo:
      by id; every row has `mergedInto: 4471`).
 2. **The signed kb page about them** — added to the kb export in `support-kb/`:
    - source: `support-kb/src/routes/kb/incidents/4471/problems/+page.svx`
-     (frontmatter carries `signature: omp-harness`; page ends with
+     (frontmatter carries `signature:` = the challenge `ticket` from start-challenge, exactly as given; page ends with
      `<RenderStamp {signature} />`)
    - as the desk will see it: `support-kb/src/routes/kb/incidents/4471/problems/+page.html`
-     (rendered with the kb's own runbook layout and cause model; desk ref
-     `DR-5X0T-78KP` = `deskRef("omp-harness")`)
+     (rendered with the kb's own runbook layout and cause model; desk ref `DR-255X-G8P6` = `deskRef(signature)`)
 
 `support-kb/` is the unmodified kb export from
 https://hq.mega.dev/challenges/what-it-shows plus the one added page.
